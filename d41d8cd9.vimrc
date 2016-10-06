@@ -8,7 +8,7 @@ imap {<CR>  {<CR>}<Esc>O
 "cb = unnamedplus makes vim and system clipboard same
 "noet : noexpandtab (tab only gives tab and not 4 spaces)
 "bs = 2 : backspace recommended settings
-set cul nocp ts=4 sw=4 noet ai cin bs=2 cb=unnamed nu ru wrap ar sc smd fdm=marker pt=<F2> mouse=a wmnu
+set cul nocp ts=4 sw=4 noet ai cin bs=2 cb=unnamed nu ru wrap ar sc smd fdm=marker pt=<F2> mouse=a wmnu so=999
 syn on
 filetype on
 
