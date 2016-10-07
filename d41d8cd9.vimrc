@@ -8,7 +8,7 @@ imap {<CR>  {<CR>}<Esc>O
 "cb = unnamedplus makes vim and system clipboard same
 "noet : noexpandtab (tab only gives tab and not 4 spaces)
 "bs = 2 : backspace recommended settings
-set cul nocp ts=4 sw=4 noet ai cin bs=2 cb=unnamed nu ru wrap ar sc smd fdm=marker pt=<F2> mouse=a wmnu
+set cul nocp ts=4 sw=4 noet ai cin bs=2 cb=unnamed nu ru wrap ar sc smd fdm=marker pt=<F2> mouse=a wmnu so=999
 syn on
 filetype on
 
@@ -24,12 +24,21 @@ if has("autocmd")
 endi
 
 "shortcuts for compile n run 
-au FileType cpp set makeprg=g++\ -o\ %:p:r\ %:p\ -std=c++11\ -O2\ -fomit-frame-pointer
-au FileType cpp  map <F9> :w<CR>:make<CR><CR><CR>
+"au FileType cpp set makeprg=g++\ -o\ %:p:r\ %:p\ -std=c++11\ -O2\ -fomit-frame-pointer 
+"au FileType cpp  map <F9> :w<CR>:make<CR><CR><CR>
+"shortcuts for compile n run 
+"normal  mode cpp 
+au filetype cpp nnoremap <F9> :w <bar> exec '!g++ -std=c++11 -O2 -fomit-frame-pointer '.shellescape('%').' -o '.shellescape('%:r').' && echo Compiled Successfully and Running.... && ./'.shellescape('%:r')<CR>
+"normal  mode c 
+au filetype c nnoremap <F9> :w <bar> exec '!gcc '-O2 -fomit-frame-pointer .shellescape('%').' -o '.shellescape('%:r').' && echo Compiled Successfully and Running.... && ./'.shellescape('%:r')<CR>
+"only run
+"normal  mode cpp,c
+au filetype cpp,c nnoremap <F5> :w <bar> exec '! echo Running Executable........ && ./'.shellescape('%:r')<CR>
+
 map <F5> :!%:p:r<CR>
 
 map <F10> :cp<CR>
-map <F11> :cn<CR>
+map <F12> :cn<CR>
 
 set t_Co=256 "sets 16 colors in terminal used for colorscheme change
 
